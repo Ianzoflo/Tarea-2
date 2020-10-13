@@ -1,0 +1,91 @@
+---
+title: "Solución tarea 2"
+author: "Ian Azofeifa Flores (B40751)"
+date: "8/10/2020"
+output: html_document
+---
+
+### B-0674 Problemas especiales en Zoología 15: Herramientas prácticas para investigación reproducible
+
+### Cargar la función replicar_reg_scal()
+
+```{r, echo = TRUE}
+source("./scripts/replicar_reg_scal.R") #Carga el archivo que contiene la funcion replicar
+```
+
+### Proporción de falsos positivos para numeros de variables
+
+```{r, echo = TRUE}
+
+#Funciones que determinan los falsos positivos para las variables 10, 20, 50 y 100
+
+falsos_positivos10 <- replicar_reg_scal(itr = 20, n = 30, nvars = 10, alfa = 0.05)
+falsos_positivos10
+falsos_positivos20 <- replicar_reg_scal(itr = 20, n = 30, nvars = 20, alfa = 0.05)
+falsos_positivos20
+falsos_positivos50 <- replicar_reg_scal(itr = 20, n = 30, nvars = 50, alfa = 0.05)
+falsos_positivos50
+falsos_positivos100 <- replicar_reg_scal(itr = 20, n = 30, nvars = 100, alfa = 0.05)
+falsos_positivos100
+
+
+#Crea vector con las proporciones de falsos positivos para numeros variables
+
+falsos<- c(falsos_positivos10,falsos_positivos20,falsos_positivos50,falsos_positivos100)
+
+
+```
+
+### Número de variables en funcion a la proporción de falsos positivos
+
+```{r, fig.align = 'center'}
+
+#Grafico de dispersion para el numero de variables en funcion a la proporcion de falsos positivos
+
+plot(c(10, 20, 50, 100) ~ falsos, ylab = "Número de variables", xlab = "Proporción de falsos positivos")
+
+
+```
+
+
+### Proporción de falsos positivos para valores de alfa
+
+```{r, echo = TRUE} 
+
+#Funciones que determinan los falsos positivos para los valores alfa 0.05, 0.02, 0.009, 0.005
+
+falsos_positivos1a <- replicar_reg_scal(itr = 20, n = 30, nvars = 50, alfa = 0.05)
+falsos_positivos1a
+falsos_positivos2a <- replicar_reg_scal(itr = 20, n = 30, nvars = 50, alfa = 0.02)
+falsos_positivos2a
+falsos_positivos3a <- replicar_reg_scal(itr = 20, n = 30, nvars = 50, alfa = 0.009)
+falsos_positivos3a
+falsos_positivos4a <- replicar_reg_scal(itr = 20, n = 30, nvars = 50, alfa = 0.005)
+falsos_positivos4a
+
+#Crea vector con las proporciones de falsos positivos para valores alfa
+
+falsosa<- c(falsos_positivos1a,falsos_positivos2a,falsos_positivos3a,falsos_positivos4a)
+
+```
+
+### Valores de alfa en funcion a la proporción de falsos positivos
+
+```{r, fig.align = 'center'}
+
+#Grafico de dispersion para Valores de alfa en funcion a la proporción de falsos positivos
+
+plot(c(0.05, 0.02, 0.009, 0.005) ~ falsosa, ylab = "Valores de alfa", xlab = "Proporción de falsos positivos")
+
+```
+
+## Información de la sesión
+
+```{r, echo = FALSE}
+sessionInfo()
+```
+
+### Organismo favorito
+
+![](loxodonta.jpg)
+**Elefante africano** (*Loxodonta africana*)
